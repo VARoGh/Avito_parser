@@ -65,8 +65,8 @@ def send_telegram(offer: dict) -> None:
 def check_database(offer: dict) -> None:
     """Запись объявлений в базу данных"""
     offer_id = offer['offer_id']
-    with sqlite3.connect('realty.db') as connection:
-        connection = sqlite3.connect('realty.db')
+    with sqlite3.connect('data_avito.db') as connection:
+        connection = sqlite3.connect('data_avito.db')
         cursor = connection.cursor()
         cursor.execute("""
         SELECT offer_id FROM offers WHERE offer_id = (?)
