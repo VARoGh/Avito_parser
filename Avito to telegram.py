@@ -1,13 +1,11 @@
-# Реализация парсера Авито с записью и обновлением данных в базу данных SQL
-import time
 import requests
+import json
+import sqlite3
+from urllib.parse import unquote
+from datetime import datetime
 from bs4 import BeautifulSoup
 from hyper.contrib import HTTP20Adapter
-from urllib.parse import unquote
-import json
-from datetime import datetime
-import sqlite3
-from config_bot import token, chat_id   #настройки для телеграм-бота в отдельном файле
+from config_bot import token, chat_id  # настройки для телеграм-бота в отдельном файле
 
 site = 'https://www.avito.ru'
 
@@ -85,6 +83,8 @@ def check_database(offer: dict) -> None:
 
 
 def get_offers(data: dict) -> list:
+    """Обработка словаря json из собранных данных
+     и формирование списка выходных данных просмотренных объявлений Авито"""
     offers = []
     for key in data:
         if 'single-page' in key:
@@ -121,4 +121,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-    time.sleep(1)
